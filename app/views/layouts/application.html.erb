@@ -9,7 +9,7 @@
   </head>
 
   <body>
-    <%= yield %>
+    <!-- 使用者工具列： -->
     <% if current_user %>
       Hi, <%= current_user.email %>
       <%= link_to('登出', destroy_user_session_path, method: :delete) %>  |
@@ -20,5 +20,8 @@
     <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+
+    <!-- yield 是顯示其他 views html 的地方 -->
+    <%= yield %>
   </body>
 </html>
