@@ -5,7 +5,9 @@ class Admin::RestaurantsController < ApplicationController
   before_action :find_restaurant, only: [:show, :edit, :update, :destroy]
 
   def index
-    @restaurants = Restaurant.all
+    # @restaurants = Restaurant.all
+    # use Kaminari
+    @restaurants = Restaurant.page(params[:page]).per(10)
   end
 
   def new
