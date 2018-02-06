@@ -39,6 +39,12 @@ gem 'devise'
 # For upload image
 gem 'carrierwave'
 
+# Generate fake data for test
+gem 'ffaker'
+
+# For paginator
+gem 'kaminari'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
