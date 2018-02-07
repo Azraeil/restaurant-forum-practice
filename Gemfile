@@ -52,7 +52,7 @@ gem 'kaminari'
 
 group :production do
   # for Heroku deploy
-  gem 'pg'
+  gem 'pg', '~> 0.18'
 end
 
 group :development, :test do
