@@ -1,3 +1,5 @@
+# version 2.1 new table structure with Ruby and FFaker
+desc "Generate fake Restaurant data."
 namespace :dev do
   task fake: :environment do
     Restaurant.destroy_all
@@ -7,14 +9,37 @@ namespace :dev do
         opening_hours: FFaker::Time.datetime,
         tel: FFaker::PhoneNumber.short_phone_number,
         address: FFaker::Address.street_address,
-        description: FFaker::Lorem.paragraph
+        description: FFaker::Lorem.paragraph,
+        # for FK category_id
+        category_id: Category.all.sample.id
       )
     end
+
     puts "Rake and FFaker have created fake restaurants."
     puts "Now we have #{Restaurant.count} restaurants data."
+
   end
 end
 
+# version 2.0, with Ruby and FFaker
+# namespace :dev do
+#   task fake: :environment do
+#     Restaurant.destroy_all
+#
+#     500.times do |i|
+#       Restaurant.create!(name: FFaker::Name.first_name,
+#         opening_hours: FFaker::Time.datetime,
+#         tel: FFaker::PhoneNumber.short_phone_number,
+#         address: FFaker::Address.street_address,
+#         description: FFaker::Lorem.paragraph
+#       )
+#     end
+#     puts "Rake and FFaker have created fake restaurants."
+#     puts "Now we have #{Restaurant.count} restaurants data."
+#   end
+# end
+
+# version 1.0, by Ruby only
 # namespace :dev do
 #   task fake: :environment do
 #     Restaurant.destroy_all
