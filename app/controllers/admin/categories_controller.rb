@@ -1,6 +1,6 @@
-class Admin::CategoriesController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authenticate_admin
+class Admin::CategoriesController < Admin::BaseAdminController
+  # find category id before action !
+  before_action :find_category, only: [:update, :destroy]
 
   def index
     @categories = Category.all
@@ -27,8 +27,7 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def update
-    # 因爲這邊沒用 before_action 所以要補。
-    @category = Category.find(params[:id])
+    # 有 before_action 先用 id 找 @category
 
     if @category.update(category_params)
       flash[:notice] = "Category data was successfully updated."
@@ -41,7 +40,8 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def destroy
-    @category = Category.find(params[:id])
+    # 有 before_action 先用 id 找 @category
+    # 請注意這種刪法，會讓關聯的餐廳資料表顯示異常(缺少餐廳欄位資料)
     @category.destroy
     flash[:alert] = "Category was successfully deleted."
     redirect_to admin_categories_path
