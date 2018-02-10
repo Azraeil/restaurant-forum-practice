@@ -1,1 +1,11 @@
 <h1>餐廳前台</h1>
+<% @restaurants.each do |restaurant| %>
+  <div>
+    <%= image_tag restaurant.image %>
+    <h3><%= link_to restaurant.name, restaurant_path(restaurant.id) %></h3>
+    <p><%= restaurant.category.name %></p>
+    <p><%= truncate(restaurant.description, length: 80) %></p>
+  </div>
+<% end %>
+
+<%= paginate @restaurants %>
