@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
   # 前台 routes
-  resources :restaurants, only: [:index, :show]
+  resources :restaurants, only: [:index, :show] do
+    resources :comments, only: [:create, :destroy]
+  end
+
   root "restaurants#index"
 
   resources :categories, only: [:show]
