@@ -14,7 +14,16 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    if current_user.admin?
+      # 先找到目前瀏覽的餐廳，因爲待會把留言刪了就沒辦法找到本來在瀏覽哪個餐廳了
+      @restaurant = Restaurant.find(params[:restaurant_id])
 
+      @comment = Comment.find(params[:id])
+      @comment.destroy
+
+      # 重新導向 到 當前的餐廳 show 頁面
+      redirect_to restaurant_path(@restaurant.id)
+    end
   end
 
   private
