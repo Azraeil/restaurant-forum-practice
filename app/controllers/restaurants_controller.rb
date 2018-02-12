@@ -6,5 +6,7 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    # 新增使用者評論
+    @comment = Comment.new
   end
 end
