@@ -27,9 +27,24 @@
   </div>
 </div>
 
+
+
 <!-- for user comment -->
 <div class="container">
   <div class="row">
+
+    <!-- 顯示留言 -->
+    <% @restaurant.comments.each do |comment| %>
+    <div>
+      <h4><%= comment.user.email.split("@").first %></h4>
+      <p><%= simple_format comment.content %></p>
+      <p class="text-muted">
+        <em><%= comment.created_at.strftime("%Y-%m-%d")
+     %></em>
+      </p>
+    </div>
+    <% end %>
+    
     <!-- 新增評論表單 -->
     <%= form_for [@restaurant, @comment] do |f| %>
       <div class="form-group">
