@@ -1,25 +1,17 @@
-<h1>餐廳前台</h1>
 <div class="container">
   <div class="row">
 
-    <!-- restaurants list，有多寫restaurant-item的class style -->
-    <% @restaurants.each do |restaurant| %>
-      <div class="col-sm-6 col-md-4">
-        <div class="restaurant-item">
-          <%= image_tag restaurant.image, class: "img-responsive center-block" %>
-          <div class="caption">
-            <h3><%= link_to restaurant.name, restaurant_path(restaurant) %></h3>
-            <p class="label label-default"><%= restaurant.category.name %><p>
-            <p><%= truncate(restaurant.description, length: 80) %></p>
-          </div>
-        </div>
-      </div>
-    <% end %>
+    <ul class="nav nav-pills nav-pills-center">
+      <li role="presentation" class="active"><%= link_to "全部餐廳", root_path %></li>
+      <% @categories.each do |category| %>
+        <li role="presentation"><%= link_to category.name, category_path(category.id) %></li>
+      <% end %>
+    </ul>
 
-    <!-- 有generate kaminari paginate bootstrap style -->
-    <div class="text-center">
-      <%= paginate @restaurants %>
-    </div>
+    <br>
+
+    <!-- 利用跟餐廳分類共用的局部樣板 -->
+    <%= render partial: "shared/restaurant_list" %>
 
   </div>
 </div>

@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+
+    <ul class="nav nav-pills nav-pills-center">
+      <li role="presentation"><%= link_to "全部餐廳", root_path %></li>
+      <% @categories.each do |category| %>
+        <!-- 動態篩選餐廳分類：判斷何時要加 li.active，讓使用中的餐廳分類底色變色 -->
+        <li role="presentation" class="<%= "active" if category == @category %>">
+          <%= link_to category.name, category_path(category.id) %>
+        </li>
+      <% end %>
+    </ul>
+
+    <br>
+
+    <!-- 利用跟前台餐廳首頁共用的局部樣板 -->
+    <%= render partial: "shared/restaurant_list" %>
+
+  </div>
+</div>
