@@ -7,6 +7,13 @@ class UsersController < ApplicationController
 
   def edit
     # find_user
+
+    # 讓使用者無法進入其他使用者的編輯頁面
+    if @user == current_user
+
+    else
+      redirect_to user_path(@user.id)
+    end
   end
 
   def update
