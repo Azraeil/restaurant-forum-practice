@@ -1,0 +1,16 @@
+<h3>Edit Profile</h3>
+
+<%= form_for @user do |f| %>
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name, class: "form-control" %>
+
+  <%= f.label :intro, "自我介紹" %>
+  <%= f.text_area :intro, class: "form-control" %>
+
+  <%= f.label :avatar, "大頭貼上傳" %>
+  <%= image_tag @user.avatar if @user.avatar? %>
+  <%= f.file_field :avatar %>
+
+  <%= f.submit "Update", class: "btn btn-primary" %>
+  <%= link_to "Cancel", user_path(@user.id), class: "btn btn-default" %>
+<% end %>

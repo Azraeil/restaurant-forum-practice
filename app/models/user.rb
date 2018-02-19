@@ -11,4 +11,7 @@ class User < ApplicationRecord
   def admin?
     return self.role == "admin"
   end
+
+  # 掛載 carrierwave upload for upload image
+  mount_uploader :avatar, PhotoUploader
 end
