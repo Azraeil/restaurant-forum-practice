@@ -26,5 +26,5 @@ end
 puts "Category seed data created!"
 
 # Default admin account
-User.create(email: "admin@test.com", password: "123123", role: "admin")
+User.create(name: "admin", email: "admin@test.com", password: "123123", role: "admin")
 puts "Default admin account created!"
