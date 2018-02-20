@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # 讓使用者在註冊時一定要寫名字
+  validates_presence_of :name
+
   # User has_many comments.
   has_many :comments
 
