@@ -10,6 +10,9 @@ class User < ApplicationRecord
   # User has_many comments.
   has_many :comments
 
+  # 實現多對多關聯
+  has_many :restaurants, through: :comments
+
   # for authenticate_admin method check role column value
   def admin?
     return self.role == "admin"

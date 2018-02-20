@@ -2,7 +2,9 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update]
 
   def show
-    # find_user
+    # before_action :find_user
+    # 使用者評論過的餐廳，並去掉重複的
+    @commented_restaurants = @user.restaurants.uniq
   end
 
   def edit
