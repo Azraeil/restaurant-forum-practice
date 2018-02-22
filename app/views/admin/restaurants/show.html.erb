@@ -1,10 +1,36 @@
-<h1><%= @restaurant.name %></h1>
+<div class="container">
+  <div class="row">
 
-Opening Hours:<%= @restaurant.opening_hours %><br>
-Tel: <%= @restaurant.tel %><br>
-Address: <%= @restaurant.address %><br>
-Description: <%= @restaurant.description %><br>
-<%= image_tag @restaurant.image, width: "300px" %>
-<br>
+    <!-- 要加上 .col-md-12才能跟 col-md-4 切齊 -->
+    <div class="col-md-12">
+      <h1 class="col-md-4 text-center"><%= @restaurant.name %></h1>
+    </div>
 
-<%= link_to 'Back to index', admin_restaurants_path %>
+    <div class="col-md-4">
+      <!-- 讓圖片能隨著瀏覽器大小變化，置中 -->
+      <%= image_tag @restaurant.image, class: "img-responsive center-block" %>
+      <hr>
+
+      <div class="well">
+        <ul class="list-unstyled">
+          <li>Opening Hours:<%= @restaurant.opening_hours %></li>
+          <li>Tel: <%= @restaurant.tel %></li>
+          <li>Address: <%= @restaurant.address %></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <%= @restaurant.description %>
+    </div>
+
+    <!-- 用 clearfix， 讓 回到首頁的按鈕 在比較理想的位置 -->
+    <div class="clearfix"></div>
+
+    <div class="col-md-12">
+      <hr>
+      <%= link_to 'Back to index', admin_restaurants_path, class: "btn btn-default" %>
+    </div>
+
+  </div>
+</div>
