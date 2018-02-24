@@ -3,7 +3,10 @@
 
     <!-- 要加上 .col-md-12才能跟 col-md-4 切齊 -->
     <div class="col-md-12">
-      <h1 class="col-md-4 text-center"><%= @restaurant.name %></h1>
+      <div class="col-md-4 text-center">
+        <h1><%= @restaurant.name %></h1>
+        <h3><%= @restaurant.category.name %></h3>
+      </div>
     </div>
 
     <div class="col-md-4">
