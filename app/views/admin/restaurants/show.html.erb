@@ -30,6 +30,8 @@
     <div class="col-md-12">
       <hr>
       <%= link_to 'Back to index', admin_restaurants_path, class: "btn btn-default" %>
+
+      <%= link_to "Edit", edit_admin_restaurant_path(@restaurant.id), class: "btn btn-default" %>
     </div>
 
   </div>

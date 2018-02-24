@@ -1,32 +1,65 @@
-<!-- 欄位錯誤訊息提示 -->
-<% if @restaurant.errors.any? %>
-  <h2>Oops! We need fix something here：</h2>
-  <ul>
-    <% @restaurant.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
+<div class="container">
 
-<%= form_for [:admin, @restaurant] do |f| %>
-  <%= f.label :name, "Name" %>
-  <%= f.text_field :name %>
+  <!-- 欄位錯誤訊息提示 -->
+  <% if @restaurant.errors.any? %>
+    <h2>Oops! We need fix something here：</h2>
+    <ul>
+      <% @restaurant.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+    <hr>
+  <% end %>
 
-  <%= f.label :tel, "Tel" %>
-  <%= f.text_field :tel %>
+  <%= form_for [:admin, @restaurant] do |f| %>
+    <div class="form-group">
+      <%= f.label :name, "Name" %>
+      <%= f.text_field :name, class:"form-control" %>
+    </div>
 
-  <%= f.label :address, "Address" %>
-  <%= f.text_field :address %>
+    <div class="form-group">
+      <%= f.label :tel, "Tel" %>
+      <%= f.text_field :tel, class:"form-control" %>
+    </div>
 
-  <%= f.label :opening_hours, "Opening Hours" %>
-  <%= f.text_field :opening_hours %>
+    <div class="form-group">
+      <%= f.label :address, "Address" %>
+      <%= f.text_field :address, class:"form-control" %>
+    </div>
 
-  <%= f.label :description, "Description" %>
-  <%= f.text_field :description %>
+    <div class="form-group">
+      <%= f.label :opening_hours, "Opening Hours" %>
+      <%= f.text_field :opening_hours, class:"form-control" %>
+    </div>
 
-  <%= f.label :image, "Photo" %>
-  <%= image_tag @restaurant.image, width: '300px' if @restaurant.image? %>
-  <%= f.file_field :image %>
+    <div class="form-group">
+      <%= f.label :description, "Description" %>
+      <%= f.text_field :description, class:"form-control" %>
+    </div>
 
-  <%= f.submit %>
-<% end %>
+    <div class="form-group">
+      <%= f.label :image, "Photo" %>
+
+      <div class="clearfix"></div>
+
+      <% if @restaurant.image? %>
+        <div class="col-md-4">
+          <!-- 讓圖片能隨著瀏覽器大小變化，置中 -->
+          <%= image_tag @restaurant.image, class: "img-responsive center-block" %>
+        </div>
+      <% end %>
+
+      <%= f.file_field :image %>
+
+    </div>
+
+    <div class="clearfix"></div>
+
+    <hr>
+    <%= f.submit class: "btn btn-primary" %>
+
+    <%= link_to "Cancel", admin_restaurants_path, class: "btn btn-default" %>
+
+  <% end %>
+
+</div>
