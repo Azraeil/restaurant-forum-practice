@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
     # 讓使用者無法進入其他使用者的編輯頁面
     if @user == current_user
-
+      # allow to edit
     else
       redirect_to user_path(@user.id)
     end
