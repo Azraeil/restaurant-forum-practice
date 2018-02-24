@@ -22,3 +22,24 @@
 .restaurant-item .caption {
   padding: 10px;
 }
+
+.my-restaurant {
+  display: inline-block;
+  text-align: center;
+  padding: 7px 7px 0 7px;
+}
+
+// https://pjchender.blogspot.tw/2015/07/css.html
+// 在編輯網頁CSS的時候，有時候我們會看到大於（>）的符號，究竟這個符號代表什麼意思呢？
+// 這個符號其實相當容易理解，你可以把它想成直接的小孩(direct descendant/child)，而平常比較容易看到的空格（space）則是所有小孩的意思。
+.my-restaurant  div {
+  height: 60px;
+}
+
+.my-restaurant img {
+  max-height: 100%;
+}
+
+.panel a:hover .my-restaurant {
+  background-color: black;
+}

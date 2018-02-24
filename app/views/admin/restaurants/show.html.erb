@@ -4,13 +4,15 @@
     <!-- 要加上 .col-md-12才能跟 col-md-4 切齊 -->
     <div class="col-md-12">
       <div class="col-md-4 text-center">
-        <h1><%= @restaurant.name %></h1>
+        <h1><%= @restaurant.name%></h1>
         <h3><%= @restaurant.category.name %></h3>
       </div>
+
     </div>
 
     <div class="col-md-4">
       <!-- 讓圖片能隨著瀏覽器大小變化，置中 -->
+      <!-- 不過發現高度被限死的樣子，長度有跟著視窗改變大小，但是高度沒有。 -->
       <%= image_tag @restaurant.image, class: "img-responsive center-block" %>
       <hr>
 

@@ -40,6 +40,10 @@
               <% end %>
 
               <li>
+                <%= link_to "User Profile", user_path(current_user.id) %>
+              </li>
+
+              <li>
                 <%= link_to('修改密碼', edit_user_registration_path) %>
               </li>
               <li>

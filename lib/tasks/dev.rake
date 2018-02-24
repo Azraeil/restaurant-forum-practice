@@ -13,7 +13,10 @@ namespace :dev do
         address: FFaker::Address.street_address,
         description: FFaker::Lorem.paragraph,
         # for FK category_id
-        category_id: Category.all.sample.id
+        category_id: Category.all.sample.id,
+
+        # 讓假的餐廳資料也有圖片
+        image: File.open(Rails.root.join("seed_img/280x270.jpg"))
       )
     end
 
