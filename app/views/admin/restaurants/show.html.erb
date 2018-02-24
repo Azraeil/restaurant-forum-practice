@@ -1,30 +1,38 @@
 <div class="container">
   <div class="row">
+
+    <!-- 要加上 .col-md-12才能跟 col-md-4 切齊 -->
     <div class="col-md-12">
-      <h1><%= @restaurant.name %></h1>
+      <h1 class="col-md-4 text-center"><%= @restaurant.name %></h1>
     </div>
 
     <div class="col-md-4">
+      <!-- 讓圖片能隨著瀏覽器大小變化，置中 -->
       <%= image_tag @restaurant.image, class: "img-responsive center-block" %>
-      <br>
+      <hr>
+
       <div class="well">
         <ul class="list-unstyled">
-          <li><strong>Category</strong> <%= @restaurant.category.name %></li>
-          <li><strong>Opening Hour:</strong> <%= @restaurant.opening_hours %></li>
-          <li><strong>Tel:</strong> <%= @restaurant.tel %></li>
-          <li><strong>Address:</strong> <%= @restaurant.address %></li>
+          <li>Opening Hours:<%= @restaurant.opening_hours %></li>
+          <li>Tel: <%= @restaurant.tel %></li>
+          <li>Address: <%= @restaurant.address %></li>
         </ul>
       </div>
     </div>
+
     <div class="col-md-8">
-      <!-- simple_format 可以將一些特殊符號轉為html，例如\n換行符號轉為html的<br> -->
-      <!-- https://ihower.tw/rails/actionview-helpers.html -->
-      <%= simple_format @restaurant.description %>
+      <%= @restaurant.description %>
     </div>
 
+    <!-- 用 clearfix， 讓 回到首頁的按鈕 在比較理想的位置 -->
     <div class="clearfix"></div>
 
-    <hr>
+    <div class="col-md-12">
+      <hr>
+      <%= link_to 'Back to index', admin_restaurants_path, class: "btn btn-default" %>
+
+      <%= link_to "Edit", edit_admin_restaurant_path(@restaurant.id), class: "btn btn-default" %>
+    </div>
 
   </div>
 </div>

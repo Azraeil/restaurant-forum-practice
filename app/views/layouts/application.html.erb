@@ -9,8 +9,7 @@
   </head>
 
   <body>
-
-    <!-- 導覽列 -->
+    <!-- 使用者工具列(導覽列)： -->
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -21,51 +20,59 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+          <!-- <a class="navbar-brand" href="#">Brand</a> -->
           <%= link_to "餐廳評論網", root_path, class: "navbar-brand" %>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="pull-right text-right nav navbar-nav">
+
+          <!-- pull-right 跟 navbar-right 似乎都能把元素往右推，順序就是從右邊數過來 -->
+          <ul class="nav navbar-nav navbar-right">
+
+            <!-- 所以建立按鈕/連結地方是就是透過沒有數字的清單項目 <li> 放連結 </li> -->
             <% if current_user %>
+              <!-- 文字內容需要要另外處理，不然似乎套不到導覽列的格式，用 <li></li> 也可以 -->
+              <p class="navbar-text">Hi, <%= current_user.email %></p>
 
               <% if current_user.admin? %>
                 <li><%= link_to 'Admin後台', admin_restaurants_path %></li>
               <% end %>
 
-              <li><p class="navbar-text">Hi, <%= current_user.name %></p></li>
-              <li><%= link_to("User Profile", user_path(current_user.id)) %></li>
-              <li><%= link_to('登出', destroy_user_session_path, method: :delete) %></li>
-              <li><%= link_to('修改密碼', edit_user_registration_path) %></li>
+              <li>
+                <%= link_to('修改密碼', edit_user_registration_path) %>
+              </li>
+              <li>
+                <%= link_to('登出', destroy_user_session_path, method: :delete) %>
+              </li>
+
             <% else %>
-              <li><%= link_to('註冊', new_user_registration_path) %></li>
-              <li><%= link_to('登入', new_user_session_path) %></li>
+              <li>
+                <%= link_to('註冊', new_user_registration_path) %>
+              </li>
+              <li>
+                <%= link_to('登入', new_user_session_path) %>
+              </li>
             <% end %>
           </ul>
-        </div>
-      </div>
+          <!-- 這邊學習了，果然需要在後面這邊註明 -->
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
     </nav>
 
+    <!-- 加入 create/update action 的 flash message -->
     <% if flash[:notice] %>
-    <div class="container">
-      <div class="row">
-        <div class="alert alert-success alert-dismissible" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <%= notice %>
-        </div>
+      <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <%= notice %>
       </div>
-    </div>
     <% end %>
 
     <% if flash[:alert] %>
-    <div class="container">
-      <div class="row">
-        <div class="alert alert-danger alert-dismissible" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <%= alert %>
-        </div>
+      <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <%= alert %>
       </div>
-    </div>
     <% end %>
 
     <%= yield %>
