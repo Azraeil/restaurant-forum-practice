@@ -11,6 +11,7 @@
     <thead>
       <tr>
         <th>Restaurant ID</th>
+        <th>Category</th>
         <th>Name</th>
         <th>Action</th>
       </tr>
@@ -21,6 +22,7 @@
       <tr>
         <!-- 這邊教材用 th 的理由應該是要自動變粗體 -->
         <td><%= restaurant.id %></td>
+        <td><%= restaurant.category.name %></td>
         <td><%= restaurant.name %></td>
         <td>
           <%= link_to 'Show', admin_restaurant_path(restaurant) %>
