@@ -1,0 +1,11 @@
+<div class="container">
+  <h1><%= @restaurant.name %>'s Dashboard</h1>
+  <hr>
+  <ul>
+    <li>有 <%= @restaurant.comments.count %> 筆評論。 </li>
+    <li>平均價位：$？？？</li>
+    <li>有 ？？ 人收藏這家餐廳。</li>
+  </ul>
+
+  <%= link_to "返回 #{@restaurant.name} 餐廳", restaurant_path(@restaurant.id), class:"btn btn-default" %>
+</div>
