@@ -9,4 +9,10 @@ class RestaurantsController < ApplicationController
     # 新增使用者評論
     @comment = Comment.new
   end
+
+  # for 所有餐廳的最新動態
+  def feeds
+    @recent_restaurants = Restaurant.order(created_at: :desc).limit(10)
+    @recent_comments = Comment.order(created_at: :desc).limit(10)
+  end
 end
