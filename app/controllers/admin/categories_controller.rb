@@ -41,9 +41,17 @@ class Admin::CategoriesController < Admin::BaseAdminController
 
   def destroy
     # 有 before_action 先用 id 找 @category
-    # 請注意這種刪法，會讓關聯的餐廳資料表顯示異常(缺少餐廳欄位資料)
-    @category.destroy
-    flash[:alert] = "Category was successfully deleted."
+    # 已經設定 dependency，如果 category 底下有關聯的 restaurant，會無法刪除且會有錯誤提示訊息。
+    if @category.destroy
+      flash[:notice] = "Category was successfully delete!"
+    else
+      flash[:alert] = @category.errors.full_messages.to_sentence
+    end
+
+    # 請注意目前這種刪法，會讓關聯的餐廳資料表顯示異常(缺少餐廳欄位資料)
+    # @category.destroy
+    # flash[:alert] = "Category was successfully deleted."
+
     redirect_to admin_categories_path
   end
 
