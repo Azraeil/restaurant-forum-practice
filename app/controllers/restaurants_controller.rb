@@ -20,4 +20,27 @@ class RestaurantsController < ApplicationController
   def dashboard
     @restaurant = Restaurant.find(params[:id])
   end
+
+  # 收藏餐廳與取消收藏餐廳
+  ## POST /restaurant/:id/favorite
+  def favorite
+    @restaurant = Restaurant.find(params[:id])
+
+    # Rails 會判斷需要的外鍵資訊
+    @restaurant.favorites.create!(user: current_user)
+    # 上一行結果與 @restaurant.favorites.create!(user_id: current_user.id) 結果一致
+
+    # 導回上一頁
+    redirect_back(fallback_location: root_path)
+  end
+
+  ## POST /restaurant/:id/unfavorite
+  def unfavorite
+    @restaurant = Restaurant.find(params[:id])
+    favorites = Favorite.where(restaurant_id: @restaurant.id, user_id: current_user.id)
+    # favorites = Favorite.where(restaurant: @restaurant, user: current_user)
+
+    favorites.destroy_all
+    redirect_back(fallback_location: root_path)
+  end
 end
