@@ -30,11 +30,7 @@
       <%= link_to "Dashboard", dashboard_restaurant_path(@restaurant.id), class:"btn btn-default" %>
 
       <!-- for favorite -->
-      <% if @restaurant.is_favorited?(current_user) %>
-        <%= link_to "Unfavorite", unfavorite_restaurant_path(@restaurant.id), method: :post, class: "btn btn-info" %>
-      <% else %>
-        <%= link_to "Favorite", favorite_restaurant_path(@restaurant.id), method: :destroy, class: "btn btn-primary" %>
-      <% end %>
+      <%= render partial: "shared/favorite", locals: {restaurant: @restaurant}%>
     </div>
 
     <div class="clearfix"></div>

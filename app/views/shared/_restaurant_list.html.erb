@@ -9,9 +9,18 @@
 
         <%= link_to restaurant_path(restaurant.id) do %>
           <%= image_tag restaurant.image, class: "img-responsive center-block" %>
-          <h3><%= restaurant.name %></h3>
+
+          <h3>
+            <%= restaurant.name %>
+
+            <!-- for favorite button -->
+            <p class="pull-right">
+              <%= render partial: "shared/favorite", locals: {restaurant: restaurant} %>
+            </p>
+          </h3>
         <% end %>
-        <p class="label label-default"><%= restaurant.category.name %><p>
+
+        <p class="label label-default"><%= restaurant.category.name %></p>
         <p><%= truncate(restaurant.description, length: 80) %></p>
       </div>
     </div>
