@@ -15,4 +15,10 @@ class Restaurant < ApplicationRecord
 
   # 掛載 carrierwave upload for upload image
   mount_uploader :image, PhotoUploader
+
+  # for favorite restaurant check
+  def is_favorited?(user)
+    # 如果這家餐廳有被該使用者收藏，回傳 True
+    self.favorited_users.include?(user)
+  end
 end
