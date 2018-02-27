@@ -12,7 +12,11 @@ class User < ApplicationRecord
   has_many :comments, dependent: :restrict_with_error
 
   # 實現多對多關聯
-  has_many :restaurants, through: :comments
+  has_many :commented_restaurants, through: :comments, source: :restaurant
+
+  # 使用者收藏很多餐廳的多對多關聯
+  has_many :favorites, dependent: :destroy
+  has_many :favorited_restaurants, through: :favorites, source: :restaurant
 
   # for authenticate_admin method check role column value
   def admin?
