@@ -1,6 +1,6 @@
 <!-- for favorite button partial -->
 <% if restaurant.is_favorited?(current_user) %>
-  <%= link_to "Unfavorite", unfavorite_restaurant_path(restaurant.id), method: :post, class: "btn btn-info" %>
+  <%= link_to "Unfavorite", unfavorite_restaurant_path(restaurant.id), method: :post, class: "btn btn-info", data: { disable_with: "Waiting..." } %>
 <% else %>
-  <%= link_to "Favorite", favorite_restaurant_path(restaurant.id), method: :destroy, class: "btn btn-primary" %>
+  <%= link_to "Favorite", favorite_restaurant_path(restaurant.id), method: :destroy, class: "btn btn-primary", data: { disable_with: "Waiting..." } %>
 <% end %>

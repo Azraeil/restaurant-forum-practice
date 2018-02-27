@@ -1,9 +1,6 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="pull-right">
-        <%= link_to "返回首頁", restaurants_path, class: "btn btn-default" %>
-      </div>
       <h1><%= @restaurant.name %></h1>
       <h4>[<%= @restaurant.category.name %>]</h4>
 
@@ -31,6 +28,9 @@
 
       <!-- for favorite -->
       <%= render partial: "shared/favorite", locals: {restaurant: @restaurant}%>
+      <div class="pull-right">
+        <%= link_to "返回首頁", restaurants_path, class: "btn btn-default" %>
+      </div>
     </div>
 
     <div class="clearfix"></div>
