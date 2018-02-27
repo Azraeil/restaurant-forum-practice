@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   # 透過 devise 實現使用者註冊，登入，管理
   devise_for :users
 
-  # 前台 routes
+  # 前台餐廳 routes
   resources :restaurants, only: [:index, :show] do
+    # for 餐廳評論
     resources :comments, only: [:create, :destroy]
 
     # 瀏覽所有餐廳的最新動態
@@ -14,6 +15,12 @@ Rails.application.routes.draw do
     # 瀏覽個別餐廳的 Dashboard
     member do
       get :dashboard
+    end
+
+    # 收藏與取消收藏餐廳功能
+    member do
+      post :favorite
+      post :unfavorite
     end
   end
 
