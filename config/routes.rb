@@ -7,9 +7,12 @@ Rails.application.routes.draw do
     # for 餐廳評論
     resources :comments, only: [:create, :destroy]
 
-    # 瀏覽所有餐廳的最新動態
     collection do
+      # 瀏覽所有餐廳的最新動態
       get :feeds
+
+      # TOP 10 Ranking restaurants
+      get :ranking
     end
 
     # 瀏覽個別餐廳的 Dashboard
@@ -23,10 +26,6 @@ Rails.application.routes.draw do
       post :unfavorite
     end
 
-    # TOP 10 Ranking restaurants
-    collection do
-      get :ranking
-    end
   end
 
   root "restaurants#index"
