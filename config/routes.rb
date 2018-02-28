@@ -22,6 +22,11 @@ Rails.application.routes.draw do
       post :favorite
       post :unfavorite
     end
+
+    # TOP 10 Ranking restaurants
+    collection do
+      get :ranking
+    end
   end
 
   root "restaurants#index"
