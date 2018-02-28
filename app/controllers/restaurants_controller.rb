@@ -58,8 +58,4 @@ class RestaurantsController < ApplicationController
     @restaurants = Restaurant.order(favorites_count: :desc).first(10)
   end
 
-  def count_favorites
-    self.favorites_count = self.favorites.size
-    self.save
-  end
 end

@@ -21,4 +21,10 @@ class Restaurant < ApplicationRecord
     # 如果這家餐廳有被該使用者收藏，回傳 True
     self.favorited_users.include?(user)
   end
+
+  # for top 10 ranking favorites_count
+  def count_favorites
+    self.favorites_count = self.favorites.size
+    self.save
+  end
 end
