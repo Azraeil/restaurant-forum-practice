@@ -70,13 +70,8 @@ namespace :dev do
   end
 
   # for fake favorites record and reset the favorites_coount column of restaurants table.
-  task fake_favorites: :environment do
+  task reset_favorites: :environment do
     Favorite.destroy_all
-
-    Restaurant.all.each do |restaurant|
-      restaurant.favorites_count = 0
-      restaurant.save
-    end
 
     puts "Clean favorites table and reset the favorites_coount column of restaurants table."
 
