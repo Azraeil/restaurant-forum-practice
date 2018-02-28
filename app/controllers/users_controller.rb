@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def show
     # before_action :find_user
     # 使用者評論過的餐廳，並去掉重複的
-    @commented_restaurants = @user.restaurants.uniq
+    @commented_restaurants = @user.commented_restaurants.uniq
   end
 
   def edit

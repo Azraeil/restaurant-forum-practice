@@ -68,6 +68,19 @@ namespace :dev do
     puts "Rake and FFaker have created fake comments."
     puts "Now we have #{Comment.count} comments."
   end
+
+  # for fake favorites record and reset the favorites_coount column of restaurants table.
+  task fake_favorites: :environment do
+    Favorite.destroy_all
+
+    Restaurant.all.each do |restaurant|
+      restaurant.favorites_count = 0
+      restaurant.save
+    end
+
+    puts "Clean favorites table and reset the favorites_coount column of restaurants table."
+
+  end
 end
 
 # version 2.0, with Ruby and FFaker

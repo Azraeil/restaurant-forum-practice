@@ -1,5 +1,3 @@
-<!-- 共用程式碼 -->
-
 <!-- restaurants list，有多寫restaurant-item的class style -->
 <% @restaurants.each do |restaurant| %>
   <div class="col-sm-6 col-md-4">
@@ -8,7 +6,7 @@
       <div class="caption">
 
         <%= link_to restaurant_path(restaurant.id) do %>
-          <%= image_tag restaurant.image, class: "img-responsive center-block" %>
+          <%= image_tag restaurant.image, class: "center-block" %>
 
           <h3>
             <%= restaurant.name %>

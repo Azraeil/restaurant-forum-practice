@@ -2,9 +2,10 @@
   <div class="row">
     <div class="col-md-12">
       <h1><%= @restaurant.name %></h1>
-      <h4>[<%= @restaurant.category.name %>]</h4>
-
-
+      <h4>
+        [<%= @restaurant.category.name %>]
+        <p class="pull-right">收藏人數：<%= @restaurant.favorites_count %></p>
+      </h4>
     </div>
 
     <div class="col-md-4">
@@ -28,6 +29,7 @@
 
       <!-- for favorite -->
       <%= render partial: "shared/favorite", locals: {restaurant: @restaurant}%>
+      
       <div class="pull-right">
         <%= link_to "返回首頁", restaurants_path, class: "btn btn-default" %>
       </div>
