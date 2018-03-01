@@ -30,9 +30,6 @@ class RestaurantsController < ApplicationController
     @restaurant.favorites.create!(user: current_user)
     # 上一行結果與 @restaurant.favorites.create!(user_id: current_user.id) 結果一致
 
-    # for top 10 ranking favorites count
-    @restaurant.count_favorites
-
     # 導回上一頁
     redirect_back(fallback_location: root_path)
   end
@@ -44,9 +41,6 @@ class RestaurantsController < ApplicationController
     # favorites = Favorite.where(restaurant: @restaurant, user: current_user)
 
     favorites.destroy_all
-
-    # for top 10 ranking favorites count
-    @restaurant.count_favorites
 
     redirect_back(fallback_location: root_path)
   end
