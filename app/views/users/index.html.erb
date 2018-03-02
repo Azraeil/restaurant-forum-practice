@@ -1,8 +1,9 @@
 <ul>
-  <% @users.each do |user| %>
+  <% @users.each do |target_user| %>
     <li>
-      <%= user.name %>
-      <%= link_to "Follow", followships_path(follow_target_id: user.id), method: :post, data: { disable_with: "Waiting..." } %>
+      <%= target_user.name %>
+      <%= link_to "Follow", followships_path(follow_target_id: target_user.id), method: :post, data: { disable_with: "Waiting..." } %>
+      <%= link_to "Unfollow", followship_path(target_user.id), method: :delete %>
     </li>
   <% end %>
 </ul>
