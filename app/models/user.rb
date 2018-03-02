@@ -18,6 +18,13 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorited_restaurants, through: :favorites, source: :restaurant
 
+  # for 追蹤使用者
+  # 一個使用者有很多追蹤記錄
+  has_many :followships, dependent: :destroy
+
+  # 透過追蹤記錄，使用者有很多追蹤目標
+  has_many :follow_targets, through: :followships
+
   # for authenticate_admin method check role column value
   def admin?
     return self.role == "admin"
