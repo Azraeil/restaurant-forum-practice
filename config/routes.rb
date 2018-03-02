@@ -32,7 +32,10 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:show]
 
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:index, :show, :edit, :update]
+
+  # for 追蹤記錄，followships#create, followships#destroy
+  resources :followships, only: [:create, :destroy]
 
   # 後台 routes
   namespace :admin, path: "akjdhkajsdh" do
