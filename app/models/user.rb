@@ -30,6 +30,11 @@ class User < ApplicationRecord
     return self.role == "admin"
   end
 
+  # 檢查追蹤使用者記錄是否存在
+  def is_followed?(target_user)
+    self.follow_targets.include?(target_user)
+  end
+
   # 掛載 carrierwave upload for upload image
   mount_uploader :avatar, PhotoUploader
 end

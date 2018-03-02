@@ -1,0 +1,5 @@
+<% if current_user.is_followed?(target_user) %>
+  <%= link_to "Unfollow", followship_path(target_user.id), method: :delete %>
+<% else %>
+  <%= link_to "Follow", followships_path(follow_target_id: target_user.id), method: :post, data: { disable_with: "Waiting..." } %>
+<% end %>
