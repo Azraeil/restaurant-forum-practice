@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update]
 
+  # for followships
+  def index
+    @users = User.all
+  end
+
   def show
     # before_action :find_user
     # 使用者評論過的餐廳，並去掉重複的
