@@ -26,46 +26,99 @@
 
       <br>
 
-      <!-- <div class="panel panel-default">
-        <div class="panel-heading">
-          <%= "#{@commented_restaurants.count} 間已評論餐廳" %>
-        </div>
-
-
-          顯示已評論過的餐體
-          <div class="panel-body">
-            <% @commented_restaurants.each do |restaurant| %>
-              <div class="my-restaurant">
-                <%= link_to restaurant_path(restaurant.id) do %>
-                <div>
-                  <%= image_tag restaurant.image, class: "img-responsive img-rounded" %>
-                </div>
-
-                  <%= restaurant.name %>
-
-              </div>
-              <% end %>
-
-            <% end %>
-          </div>
-      </div> -->
-      <div class="panel panel-default">
+      <div class="col-md-4">
+        <!-- 顯示追蹤了哪些使用者 -->
+        <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title"><strong><%= @commented_restaurants.count %></strong> 間已評論餐廳</h3>
+            <%= "#{@user.follow_targets.count} followers" %>
           </div>
+
           <div class="panel-body">
-            <% @commented_restaurants.each do |restaurant| %>
-              <%= link_to restaurant_path(restaurant) do %>
-              <div class="my-restaurant">
-                <div>
-                  <%= image_tag restaurant.image, class: "img-responsive img-rounded" %>
+            <% @user.follow_targets.each do |follow_target| %>
+              <%= link_to user_path(follow_target.id) do %>
+                <div class="my-following">
+                  <div>
+                    <%= image_tag follow_target.avatar, class: "img-responsive img-circle" %>
+                    <p>
+                      <%= follow_target.name %>
+                    </p>
+                  </div>
                 </div>
-                <h5><%= restaurant.name %></h5>
-              </div>
+                <hr>
               <% end %>
             <% end %>
           </div>
-        </div>
+        </div><%# .panel .panel-default %>
+
+        <!-- 顯示有哪些使用者追蹤了我 -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <%= "#{@user.followers.count} followings" %>
+          </div>
+
+          <div class="panel-body">
+            <% @user.followers.each do |follower| %>
+              <%= link_to user_path(follower.id) do %>
+                <div class="my-following">
+                  <div>
+                    <%= image_tag follower.avatar, class: "img-responsive img-circle" %>
+                    <p>
+                      <%= follower.name %>
+                    </p>
+                  </div>
+                </div>
+              <% end %>
+              <hr>
+            <% end %>
+          </div>
+        </div><%# .panel .panel-default %>
+      </div><%# .col-md-4 %>
+
+      <div class="col-md-8">
+        <!-- 顯示已評論過的餐廳 -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <%= "#{@commented_restaurants.count} 間已評論餐廳" %>
+          </div>
+
+          <div class="panel-body">
+            <% @commented_restaurants.each do |restaurant| %>
+              <%= link_to restaurant_path(restaurant.id) do %>
+                <%# 這行不能放在 link_to 外面，因爲 link_to 會產生 連結 <a></a> css 設定的 my-restaurant > div 就會吃不到 %>
+                <div class="my-restaurant">
+                  <div>
+                    <%= image_tag restaurant.image, class: "img-responsive img-rounded" %>
+                  </div>
+                  <%= restaurant.name %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div><%# .panel .panel-default %>
+
+        <div class="clearfix"></div>
+
+        <!-- 顯示收藏的餐廳 -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <%= "#{@user.favorited_restaurants.count} 間已收藏餐廳" %>
+          </div>
+
+          <div class="panel-body">
+            <% @user.favorited_restaurants.each do |restaurant| %>
+              <%= link_to restaurant_path(restaurant.id) do %>
+                <%# 這行不能放在 link_to 外面，因爲 link_to 會產生 連結 <a></a> css 設定的 my-restaurant > div 就會吃不到 %>
+                <div class="my-restaurant">
+                  <div>
+                    <%= image_tag restaurant.image, class: "img-responsive img-rounded" %>
+                  </div>
+                  <%= restaurant.name %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div><%# .panel .panel-default %>
+      </div><%# .col-md-8 %>
 
     </div> <!-- .col-md-10 .col-md-offset-1 -->
   </div> <!-- .row -->
