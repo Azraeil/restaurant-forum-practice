@@ -33,14 +33,17 @@ namespace :dev do
     10.times do
       # 忘記欄位回去翻 schema.db
       User.create!(
-        name: FFaker::Name.unique.name.first_name,
+        name: FFaker::Name.unique.name,
         email: FFaker::Internet.email,
         intro: FFaker::Lorem.paragraph,
         # 神奇的事情發生了，我去 schema 看 明明這欄位就叫 `encrypted_password`
         # 但是錯誤回報是給 ActiveRecord::RecordInvalid: Validation failed: Password can't be blank
         # 是 Password
         # encrypted_password: FFaker::Name.unique.name
-        password: FFaker::Name.unique.name
+        password: FFaker::Name.unique.name,
+
+        # for 美食達人頁面
+        avatar: File.open(Rails.root.join("seed_img/280x270.jpg"))
       )
     end
 
