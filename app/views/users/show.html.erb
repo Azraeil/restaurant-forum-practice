@@ -14,6 +14,16 @@
         <div class="col-md-9 col-sm-8">
           <h2><%= @user.name %></h2>
           <p><strong><%= @user.email %></strong></p>
+
+          <!-- inline 而且沒有標頭 list-unstyled list -->
+          <!-- 發現似乎只要設定 list inline 即可，標頭就會消失 -->
+          <ul class="list-inline list-unstyled">
+            <li><%= @user.commented_restaurants.count %> 間已評論餐廳</li>
+            <li><%= @user.favorited_restaurants.count %> 間已收藏餐廳</li>
+            <li><%= @user.follow_targets.count %> followings</li>
+            <li><%= @user.followers.count %> followers</li>
+          </ul>
+
           <div><%= simple_format @user.intro %></div>
           <% if @user.email == current_user.email %>
             <%= link_to 'Edit User Profile', edit_user_path(@user), class: "btn btn-primary" %>
@@ -28,47 +38,41 @@
 
       <div class="col-md-4">
         <!-- 顯示追蹤了哪些使用者 -->
+        <!-- panel 包一個 list-group -->
         <div class="panel panel-default">
           <div class="panel-heading">
-            <%= "#{@user.follow_targets.count} followers" %>
+            <%= "#{@user.follow_targets.count} followings" %>
           </div>
 
-          <div class="panel-body">
+          <ul class="list-group">
             <% @user.follow_targets.each do |follow_target| %>
-              <%= link_to user_path(follow_target.id) do %>
+              <li class="list-group-item">
+                <%= link_to user_path(follow_target.id) do %>
                 <div class="my-following">
-                  <div>
-                    <%= image_tag follow_target.avatar, class: "img-responsive img-circle" %>
-                    <p>
-                      <%= follow_target.name %>
-                    </p>
-                  </div>
+                  <%= image_tag follow_target.avatar, class: "img-circle" %>
+
+                  <%= follow_target.name %>
                 </div>
-                <hr>
-              <% end %>
+                <% end %>
+              </li>
             <% end %>
-          </div>
+          </ul>
         </div><%# .panel .panel-default %>
 
         <!-- 顯示有哪些使用者追蹤了我 -->
         <div class="panel panel-default">
           <div class="panel-heading">
-            <%= "#{@user.followers.count} followings" %>
+            <%= "#{@user.followers.count} followers" %>
           </div>
 
           <div class="panel-body">
             <% @user.followers.each do |follower| %>
               <%= link_to user_path(follower.id) do %>
                 <div class="my-following">
-                  <div>
-                    <%= image_tag follower.avatar, class: "img-responsive img-circle" %>
-                    <p>
-                      <%= follower.name %>
-                    </p>
-                  </div>
+                  <%= image_tag follower.avatar, class: "img-circle" %>
+                  <%= follower.name %>
                 </div>
               <% end %>
-              <hr>
             <% end %>
           </div>
         </div><%# .panel .panel-default %>
