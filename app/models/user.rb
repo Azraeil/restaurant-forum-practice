@@ -25,6 +25,13 @@ class User < ApplicationRecord
   # 透過追蹤記錄，使用者有很多追蹤目標
   has_many :follow_targets, through: :followships
 
+  # 設定反向追蹤記錄，找出追隨使用者的有哪些人
+  # 先找出追蹤記錄
+  has_many :inverse_followships, class_name: "Followship", foreign_key: "follow_target_id"
+
+  # 找出追蹤者的資料
+  has_many :followers, through: :inverse_followships, source: :user
+
   # for authenticate_admin method check role column value
   def admin?
     return self.role == "admin"
