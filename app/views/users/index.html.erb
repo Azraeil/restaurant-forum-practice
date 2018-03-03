@@ -8,8 +8,12 @@
       <div class="col-md-3 text-center">
         <div class="users">
           <%= link_to user_path(target_user.id) do %>
-            <%= image_tag target_user.avatar, class: "img-responsive " %>
-            <%= target_user.name %>
+            <!-- <%= image_tag target_user.avatar, class: "img-responsive " %> -->
+            <img src="http://via.placeholder.com/128x128">
+            <div class="">
+              <%= target_user.name %>
+            </div>
+
           <% end %>
         </div>
 
