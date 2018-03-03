@@ -1,11 +1,20 @@
-<ul>
+<%= render partial: "shared/restaurant_nav_bar" %>
+
+<div class="container">
+  <h1>美食達人</h1>
+  <hr>
   <% @users.each do |target_user| %>
     <% if target_user != current_user %>
-      <li>
-        <%= target_user.name %>
+      <div class="col-md-3 text-center">
+        <div class="users">
+          <%= link_to user_path(target_user.id) do %>
+            <%= image_tag target_user.avatar, class: "img-responsive " %>
+            <%= target_user.name %>
+          <% end %>
+        </div>
 
         <%= render partial: "shared/follow", locals: {target_user: target_user} %>
-      </li>
+      </div>
     <% end %>
   <% end %>
-</ul>
+</div>

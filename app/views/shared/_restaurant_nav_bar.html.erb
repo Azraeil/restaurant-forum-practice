@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="<%= "active" if current_page?(restaurants_path) %>">
+        <%= link_to "首頁", restaurants_path %>
+      </li>
+
+      <li role="presentation" class="<%= "active" if current_page?(feeds_restaurants_path) %>">
+        <%= link_to "最新消息", feeds_restaurants_path %>
+      </li>
+
+      <li role="presentation" class="<%= "active" if current_page?(ranking_restaurants_path) %>">
+        <%= link_to "TOP10 人氣餐廳", ranking_restaurants_path %>
+      </li>
+
+      <li role="presentation" class="<%= "active" if current_page?(users_path) %>">
+        <%= link_to "美食獵人", users_path %>
+      </li>
+    </ul>
+
+  </div>
+</div>
