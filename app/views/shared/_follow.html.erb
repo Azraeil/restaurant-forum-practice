@@ -5,7 +5,7 @@
 <% end %>
 
 <% if current_user.is_friend?(target_user) %>
-  <%= link_to "Unfriend", friend_path(target_user.id), method: :delete, class: "btn btn-default" %>
+  <%= link_to "Unfriend", friendship_path(target_user.id), method: :delete, class: "btn btn-default" %>
 <% else %>
   <%= link_to "Friend", friendships_path(friend_target_id: target_user.id), method: :post, data: { disable_with: "Waiting..." }, class: "btn btn-primary" %>
 <% end %>
