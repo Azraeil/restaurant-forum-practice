@@ -32,6 +32,15 @@ class User < ApplicationRecord
   # 找出追蹤者的資料
   has_many :followers, through: :inverse_followships, source: :user
 
+  # For 交友記錄 (仿追蹤使用者)
+  # 一個使用者有很多交友記錄
+  has_many :friendships, dependent: :destroy
+
+  # 透過交友記錄，使用者有很多朋友
+  # has_many :friend_tagets, through: :friendships, source: :friend_target
+  has_many :friend_targets, through: :friendships
+
+
   # for authenticate_admin method check role column value
   def admin?
     return self.role == "admin"
