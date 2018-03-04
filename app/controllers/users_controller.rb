@@ -34,6 +34,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def friend_list
+    
+  end
+
   private
   # for before_action
   def find_user

@@ -1,0 +1,12 @@
+<%= render partial: "shared/restaurant_nav_bar" %>
+
+<div class="container">
+  <ul class="list-group">
+  <% current_user.all_friends.each do |friend| %>
+    <li class="list-group-item">
+      <%= friend.name %>
+      <%= render partial: "shared/follow", locals: {target_user: friend} %>
+    </li>
+  <% end %>
+  </ul>
+</div>

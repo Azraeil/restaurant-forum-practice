@@ -40,6 +40,15 @@ class User < ApplicationRecord
   # has_many :friend_tagets, through: :friendships, source: :friend_target
   has_many :friend_targets, through: :friendships
 
+  # 找出反向交友記錄，其他使用者將我加入好友的記錄
+  has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_target_id"
+
+  # 找出將我加入好友的使用者
+  has_many :inverse_friends, through: :inverse_friendships, source: :user
+
+  def all_friends
+    @my_all_friends = (self.friend_targets + self.inverse_friends).uniq
+  end
 
   # for authenticate_admin method check role column value
   def admin?

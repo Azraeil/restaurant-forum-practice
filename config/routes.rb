@@ -32,7 +32,11 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:show]
 
-  resources :users, only: [:index, :show, :edit, :update]
+  resources :users, only: [:index, :show, :edit, :update] do
+    member do
+      get :friend_list
+    end
+  end
 
   # for 追蹤記錄，followships#create, followships#destroy
   resources :followships, only: [:create, :destroy]

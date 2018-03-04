@@ -16,7 +16,10 @@
       <li role="presentation" class="<%= "active" if current_page?(users_path) %>">
         <%= link_to "美食獵人", users_path %>
       </li>
-    </ul>
 
+      <li role="presentation" class="<%= "active" if current_page?(friend_list_user_path(current_user.id)) %>">
+        <%= link_to "我的好友", friend_list_user_path(current_user.id) %>
+      </li>
+    </ul>
   </div>
 </div>
