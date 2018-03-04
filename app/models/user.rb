@@ -51,6 +51,11 @@ class User < ApplicationRecord
     self.follow_targets.include?(target_user)
   end
 
+  # 檢查交友關係是否存在
+  def is_friend?(target_user)
+    self.friend_targets.include?(target_user)
+  end
+
   # 掛載 carrierwave upload for upload image
   mount_uploader :avatar, PhotoUploader
 end

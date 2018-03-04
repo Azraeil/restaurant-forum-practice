@@ -37,6 +37,9 @@ Rails.application.routes.draw do
   # for 追蹤記錄，followships#create, followships#destroy
   resources :followships, only: [:create, :destroy]
 
+  # for 交友記錄
+  resources :friendships, only: [:create, :destroy]
+
   # 後台 routes
   namespace :admin, path: "akjdhkajsdh" do
     resources :restaurants
